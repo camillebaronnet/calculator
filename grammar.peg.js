@@ -6,14 +6,6 @@
       };
     }
     new Map();
-    //exportVars.set('pi', Math.PI);
-  // https://api.fixer.io/latest
-  function money(value, currency){
-  switch (currency){
-      case 'EUR':
-      return value*1.5;
-    }
-  }
 }
 
 
@@ -75,5 +67,4 @@ Words = (String _)* { return text().split(' ');  }
 _ "whitespace"
   = [ \t]*
   
-Tolerence = [ \t+()/:=*]*
-              
+Tolerence = [ \t+/:=*]*

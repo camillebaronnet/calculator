@@ -142,9 +142,9 @@ window.parser = /*
         peg$startRuleFunction  = peg$parseLines,
 
         peg$c0 = function(vars, result) {
-        	Object.keys(window.exportVars).forEach(function(key){
-            	if(window.exportVars[key] === null){
-                	window.exportVars[key] = result
+          Object.keys(window.exportVars).forEach(function(key){
+              if(window.exportVars[key] === null){
+                  window.exportVars[key] = result
                 }
             });
           return {
@@ -188,10 +188,10 @@ window.parser = /*
         peg$c24 = peg$classExpectation([["0", "9"], ["a", "f"], ["A", "F"], ",", "."], false, false),
         peg$c25 = function() {
           if(text().match(/[a-fA-F]+/)){
-          	return parseInt(text(), 16);
+            return parseInt(text(), 16);
           }
           else{
-          	return parseFloat(text().replace(',', '.'), 10);
+            return parseFloat(text().replace(',', '.'), 10);
           }
         },
         peg$c26 = /^[^0-9 \t\n\r]/,
@@ -203,8 +203,8 @@ window.parser = /*
         peg$c32 = peg$otherExpectation("whitespace"),
         peg$c33 = /^[ \t]/,
         peg$c34 = peg$classExpectation([" ", "\t"], false, false),
-        peg$c35 = /^[ \t+()\/:=*]/,
-        peg$c36 = peg$classExpectation([" ", "\t", "+", "(", ")", "/", ":", "=", "*"], false, false),
+        peg$c35 = /^[ \t+\/:=*]/,
+        peg$c36 = peg$classExpectation([" ", "\t", "+", "/", ":", "=", "*"], false, false),
 
         peg$currPos          = 0,
         peg$savedPos         = 0,
@@ -957,21 +957,13 @@ window.parser = /*
     }
 
 
-    	var floatFix = 1000000000;
+      var floatFix = 1000000000;
           if(window.exportVars === undefined){
           window.exportVars = {
               'pi' : Math.PI
           };
         }
         new Map();
-        //exportVars.set('pi', Math.PI);
-    	// https://api.fixer.io/latest
-      function money(value, currency){
-    	switch (currency){
-        	case 'EUR':
-    			return value*1.5;
-        }
-      }
 
 
     peg$result = peg$startRuleFunction();
