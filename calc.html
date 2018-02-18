@@ -16,10 +16,9 @@
 		height: 100%;
 	}
 	:root{
-		--background: #232429;
-		--primary:#8dd52d;
-	}
-	:root{
+		--line-height: 25px;
+		/*--background: #232429;*/
+		/*--primary:#8dd52d;*/
 		--background: #2c3e50;
 		--primary:#f1c40f;
 	}
@@ -58,7 +57,7 @@
 		height: 100%;
 		min-height: 100%;
 		outline: 0;
-		line-height:25px;
+		line-height:var(--line-height);
 		display: block;
 		overflow: hidden;
 		padding-left: 10px;
@@ -80,18 +79,21 @@
 		font-weight: 300;
 	}
 	.result{
-		line-height: 25px;
+		line-height: var(--line-height);
 		text-align: right;
 		z-index: 2;
 		pointer-events: none;
 		padding-right: 10px;
+	}
+	.result-empty{
+	    height: var(--line-height);
 	}
 	.result span{
 		cursor: default;
 		transition: background .2s;
 		border-radius: 3px;
 		padding: 0 5px;
-		line-height: 25px;
+		line-height: var(--line-height);
 		pointer-events: all;
 	}
 	.result span:hover {
@@ -168,7 +170,7 @@
 				let resultsBox = $('#resultsBox').html('');
 
 				this.textarea.val().split("\n").forEach((line, i) => {
-					let result = {'result' : '-'};
+					let result = {'result' : false};
 					try{
 						result = parser.parse(line);
 						result.exportVars;
@@ -176,7 +178,12 @@
 
 					}
 
-					resultsBox.append('<div class="result"><span>'+result['result']+'</span></div>');
+					if(result['result'] === false){
+						resultsBox.append('<div class="result-empty"></div>');
+					}
+					else{
+						resultsBox.append('<div class="result"><span>'+result['result']+'</span></div>');
+					}
 				});
 
 				return this;
