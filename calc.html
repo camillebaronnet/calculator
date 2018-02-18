@@ -221,7 +221,9 @@
 					'pi' : Math.PI
 				};
 
-				calculator.highlight($('.highlight'));
+				setTimeout(function(){
+					calculator.highlight($('.highlight'));
+				}, 0);
 				calculator.updateTextareaHeight();
 				calculator.processLignes();
 
