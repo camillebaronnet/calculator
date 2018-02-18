@@ -163,6 +163,7 @@
 			constructor(textareaNode){
 				this.textareaNode = textareaNode;
 				this.textarea = $(textareaNode);
+				this.intl = new Intl.NumberFormat();
 			}
 
 			processLignes(){
@@ -182,7 +183,9 @@
 						resultsBox.append('<div class="result-empty"></div>');
 					}
 					else{
-						resultsBox.append('<div class="result"><span>'+result['result']+'</span></div>');
+						resultsBox.append('<div class="result"><span>'+
+							this.intl.format(result['result'])
+						+'</span></div>');
 					}
 				});
 
