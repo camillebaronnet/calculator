@@ -8,14 +8,14 @@ var pegjsParams = {
 };
 
 gulp.task('default', function () {
-    return gulp.src('*.pegjs')
+    return gulp.src('src/*.pegjs')
     	.pipe(pegjs(pegjsParams))
         .pipe(gulp.dest('dist/js'));
 });
 
  
 gulp.task('watch', function () {
-    return watch('*.pegjs')
+    return watch('src/*.pegjs')
     	.pipe(pegjs(pegjsParams))
         .pipe(gulp.dest('dist/js'));
 });
