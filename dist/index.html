@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculator</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,700" rel="stylesheet">
+	<link rel="stylesheet" href="css/styles.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+	<script src="js/grammar.js"></script>
+	<script>
+
+		let parser = window.parser;
+
+		class Calculator{
+
+			constructor(textareaNode){
+				this.textareaNode = textareaNode;
+				this.textarea = $(textareaNode);
+				this.intl = new Intl.NumberFormat();
+			}
+
+			processLignes(){
+
+				let resultsBox = $('#resultsBox').html('');
+
+				this.textarea.val().split("\n").forEach((line, i) => {
+					let result = {'result' : false};
+					try{
+						result = parser.parse(line);
+						result.exportVars;
+					}catch(error){
+
+					}
+
+					if(result['result'] === false){
+						resultsBox.append('<div class="result-empty"></div>');
+					}
+					else{
+						resultsBox.append('<div class="result"><span>'+
+							this.intl.format(result['result'])
+						+'</span></div>');
+					}
+				});
+
+				return this;
+			}
+
+			updateTextareaHeight(){
+
+				let lineHeight = parseInt(this.textarea.css('line-height').replace('px','')),
+					content = this.textarea.val(),
+					offset = 0;
+
+				let lines = content.split("\n");
+
+				this.textarea.height((lines.length + offset ) * lineHeight);
+
+				return this;
+			}
+
+			highlight(highlight){
+
+				let html = this.textarea.val();
+				html = html.replace(/([+*=]+)/g, '<span class="operator">$1</span>');
+				html = html.replace(/([0-9.,]+)/g, '<span class="float">$1</span>');
+				html = html.replace(/([#](.*?)[\n])/g, '<span class="comment">$1</span>');
+
+
+				highlight.html(html);
+
+			}
+
+		}
+
+		$(function(){
+
+			const textarea = $('textarea');
+			const calculator = new Calculator(textarea.get(0));
+
+			textarea.bind('keydown keyup change', function(){
+
+
+				window.exportVars = {
+					'pi' : Math.PI
+				};
+
+				setTimeout(function(){
+					calculator.highlight($('.highlight'));
+				}, 0);
+				calculator.updateTextareaHeight();
+				calculator.processLignes();
+
+				console.log();
+			});
+			textarea.trigger('change');
+		});
+	</script>
+</head>
+<body>
+<div class="body">
+<div class="container">
+	<textarea autocorrect="off" autocapitalize="off" spellcheck="false" wrap="soft"># Calcul d'un perimetre
+radius = 300
+diameter = 2 * radius
+perimeter = diameter * pi
+
+# Poids d'un 🍔 en gramme
+🧀 = 50
+🍞 = 50
+🥗 = 🍅 = 25
+🍔 = 🍞 * 2 + 🧀 + 🥗
+</textarea>
+	<div class="highlight"></div>
+	<div id="resultsBox"></div>
+</div>
+</div>
+</body>
+</html>
