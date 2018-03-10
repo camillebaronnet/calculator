@@ -43,11 +43,11 @@ Term
 
 Factor
   = "(" _ expr:Expression _ ")" { return expr; }
-  / CallVariable 
+  / ResolveVariable
   / num:Number { return num }
 
 
-CallVariable
+ResolveVariable
   = string:String { return window.exportVars[string.join('').toLowerCase()]; }
 
 Number "number"
@@ -61,8 +61,6 @@ Number "number"
 }
 
 String = [^0-9 \t\n\r]+
-Word = [a-zA-Z]+ { return text();  }
-Words = (String _)* { return text().split(' ');  }
 
 _ "whitespace"
   = [ \t]*
