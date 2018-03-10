@@ -1,13 +1,12 @@
 {
   var floatFix = 1000000000;
-      if(window.exportVars === undefined){
+    if(window.exportVars === undefined){
       window.exportVars = {
           'pi' : Math.PI
       };
     }
     new Map();
 }
-
 
 Lines = vars:Variable* result:Result {
   Object.keys(window.exportVars).forEach(function(key){
@@ -51,7 +50,7 @@ ResolveVariable
   = string:String { return window.exportVars[string.join('').toLowerCase()]; }
 
 Number "number"
-  = _ [0-9a-fA-F,\.]+ {
+  = [0-9a-fA-F,\.]+ {
   if(text().match(/[a-fA-F]+/)){
     return parseInt(text(), 16);
   }
@@ -60,9 +59,10 @@ Number "number"
   }
 }
 
-String = [^0-9 \t\n\r]+
+String = [a-zA-Z\u00C0-\uFFFF]+
 
 _ "whitespace"
   = [ \t]*
   
 Tolerence = [ \t+/:=*]*
+
