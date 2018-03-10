@@ -52,7 +52,7 @@ ResolveVariable
 Number "number"
   = [0-9,\.]+ { return parseFloat(text().replace(',', '.'), 10); }
 
-String = [a-zA-Z\u00C0-\uFFFF]+[0-9a-zA-Z\u00C0-\uFFFF]* { return text(); }
+String = [a-zA-Z\u00C0-\uFFFF_]+[0-9a-zA-Z\u00C0-\uFFFF_]* { return text(); }
 
 _ "whitespace"
   = [ \t]*
