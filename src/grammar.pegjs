@@ -20,7 +20,7 @@ Lines = vars:Variable* result:Result {
   };
 }
 
-Variable = varname:String _ "=" _ { window.exportVars[varname.join('').toLowerCase()] = null; }
+Variable = varname:String _ "=" _ { window.exportVars[varname.toLowerCase()] = null; }
 
 Result = Tolerence exp:Expression Tolerence { return Math.round(exp  * floatFix) / floatFix; }
 
@@ -42,24 +42,17 @@ Term
 
 Factor
   = "(" _ expr:Expression _ ")" { return expr; }
+  / num:Number
   / ResolveVariable
-  / num:Number { return num }
 
 
 ResolveVariable
-  = string:String { return window.exportVars[string.join('').toLowerCase()]; }
+  = string:String { return window.exportVars[string.toLowerCase()]; }
 
 Number "number"
-  = [0-9a-fA-F,\.]+ {
-  if(text().match(/[a-fA-F]+/)){
-    return parseInt(text(), 16);
-  }
-  else{
-    return parseFloat(text().replace(',', '.'), 10);
-  }
-}
+  = [0-9,\.]+ { return parseFloat(text().replace(',', '.'), 10); }
 
-String = [a-zA-Z\u00C0-\uFFFF]+
+String = [a-zA-Z\u00C0-\uFFFF]+[0-9a-zA-Z\u00C0-\uFFFF]* { return text(); }
 
 _ "whitespace"
   = [ \t]*
