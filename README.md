@@ -1,6 +1,6 @@
 # Calculator
 
-Modern calculator build in HTML, CSS and Javascript. A custom grammar was build with PegJS.
+Modern calculator build in HTML, CSS and Javascript. A custom grammar was built with PegJS.
 
 **Demo :** https://camillebaronnet.github.io/calculator/dist/index.html
 
