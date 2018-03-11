@@ -1,6 +1,6 @@
 # Calculator
 
-Modern calculator build in HTML, CSS and Javascript. A custom grammar was built with PegJS.
+Modern calculator build in HTML, CSS and Javascript. A custom grammar was built with [PEG.js](https://pegjs.org/).
 
 **Demo :** https://camillebaronnet.github.io/calculator/dist/index.html
 
@@ -18,4 +18,26 @@ Modern calculator build in HTML, CSS and Javascript. A custom grammar was built 
 ## Installation
 
 Download or clone the project and run <code>/dist/index.html</code> on modern browser.
+
+## Contribute
+
+Clone the projet and download dependencies :
+
+```
+git clone git@github.com:camillebaronnet/calculator.git
+cd calculator/
+npm install
+```
+
+Work on grammar `src/grammar.pegjs` :
+
+```
+npm run watch
+```
+
+Finally, build before commit :
+
+```
+npm run build
+```
 
