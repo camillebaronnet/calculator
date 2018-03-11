@@ -38,15 +38,17 @@ class Calculator{
 		return this;
 	}
 
-	updateTextareaHeight(){
+	updateHeight(){
 
 		let lineHeight = parseInt(this.textarea.css('line-height').replace('px','')),
 			content = this.textarea.val(),
 			offset = 0;
 
 		let lines = content.split("\n");
+		let newHeight = (lines.length + offset ) * lineHeight;
 
-		this.textarea.height((lines.length + offset ) * lineHeight);
+		this.textarea.height(newHeight);
+		this.highlight.height(newHeight);
 
 		return this;
 	}
