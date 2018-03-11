@@ -14,6 +14,7 @@ Modern calculator build in HTML, CSS and Javascript. A custom grammar was built 
 - Live result for each line
 - Line highlight at mouseover of the result
 - Syntax highlighting
+- Support common mathematical constants (pi, e, ln10, ln2, log10e, log2e, sqrt1_2, sqrt2)
 
 ## Installation
 
