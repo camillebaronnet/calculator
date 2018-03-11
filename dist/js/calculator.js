@@ -1,10 +1,15 @@
 
 class Calculator{
 
-	constructor(textareaNode){
-		this.textareaNode = textareaNode;
-		this.textarea = $(textareaNode);
-		this.intl = new Intl.NumberFormat();
+	constructor(params){
+		this.params =  $.extend({
+			'textarea' : 'textarea',
+			'highlight' : '.highlight',
+			'intl' : new Intl.NumberFormat()
+		}, params);
+
+		this.textarea = $(this.params.textarea);
+		this.highlight = $(this.params.highlight);
 	}
 
 	processLignes(){
@@ -25,7 +30,7 @@ class Calculator{
 			}
 			else{
 				resultsBox.append('<div class="result"><span>'+
-					this.intl.format(result['result'])
+					this.params.intl.format(result['result'])
 				+'</span></div>');
 			}
 		});
@@ -46,7 +51,7 @@ class Calculator{
 		return this;
 	}
 
-	highlight(highlight){
+	highlighting(){
 
 		let html = this.textarea.val();
 		html = html.replace(/([+*=]+)/g, '<span class="operator">$1</span>');
@@ -54,7 +59,7 @@ class Calculator{
 		html = html.replace(/([#](.*?)[\n])/g, '<span class="comment">$1</span>');
 
 
-		highlight.html(html);
+		this.highlight.html(html);
 
 	}
 

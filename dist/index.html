@@ -11,7 +11,7 @@
 		$(function(){
 
 			const textarea = $('textarea');
-			const calculator = new Calculator(textarea.get(0));
+			const calculator = new Calculator();
 
 			textarea.bind('keydown keyup change', function(){
 
@@ -29,7 +29,7 @@
 				};
 
 				setTimeout(function(){
-					calculator.highlight($('.highlight'));
+					calculator.highlighting();
 				}, 0);
 				calculator.updateTextareaHeight();
 				calculator.processLignes();
