@@ -63,8 +63,11 @@ textarea{
 }
 .highlight{
 	position: absolute;
-	white-space: pre;
 	pointer-events: none;
+}
+.highlight p{
+	min-height: var(--line-height);
+	white-space: pre-wrap;
 }
 #resultsBox{
 	right: 0;
@@ -78,11 +81,11 @@ textarea{
 	z-index: 2;
 	pointer-events: none;
 	padding-right: 10px;
-}
-.result-empty{
-    height: var(--line-height);
+	display: flex;
+	flex-direction: row-reverse;
 }
 .result span{
+	align-self: flex-end;
 	cursor: default;
 	transition: background .2s;
 	border-radius: 3px;

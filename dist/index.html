@@ -28,9 +28,9 @@
 
 				setTimeout(function(){
 					calculator.highlighting();
+					calculator.processLignes();
 				}, 0);
 				calculator.updateHeight();
-				calculator.processLignes();
 			});
 			textarea.trigger('change');
 		});

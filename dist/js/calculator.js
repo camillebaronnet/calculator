@@ -25,14 +25,17 @@ class Calculator{
 
 			}
 
+			let height = $('.highlight p:nth-child('+(i+1)+')').height();
+			let resultL = $('<div></div>').addClass('result').height(height);
+
 			if(result['result'] === false){
-				resultsBox.append('<div class="result-empty"></div>');
 			}
 			else{
-				resultsBox.append('<div class="result"><span>'+
+				resultL.append('<span>'+
 					this.params.intl.format(result['result'])
-				+'</span></div>');
+				+'</span>');
 			}
+			resultsBox.append(resultL);
 		});
 
 		return this;
@@ -55,13 +58,21 @@ class Calculator{
 
 	highlighting(){
 
+		this.highlight.width(this.textarea.width());
+
 		let html = this.textarea.val();
-		html = html.replace(/([+*=]+)/g, '<span class="operator">$1</span>');
-		html = html.replace(/([0-9.,]+)/g, '<span class="float">$1</span>');
-		html = html.replace(/([#](.*?)[\n])/g, '<span class="comment">$1</span>');
-
-
-		this.highlight.html(html);
+		html = html.split(/\n/);
+		html = $.map(html, function(line){
+			if(line.match(/^(#(.*))/g)){
+				line = '<span class="comment">'+line+'</span>';
+			}
+			else{
+				line = line.replace(/([+*=]+)/g, '<span class="operator">$1</span>');
+				line = line.replace(/([0-9.,]+)/g, '<span class="float">$1</span>');
+			}
+			return line;
+		});
+		this.highlight.html('<p>'+html.join('</p><p>')+'</p>');
 
 	}
 
