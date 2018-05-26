@@ -13,7 +13,15 @@
 			const textarea = $('textarea');
 			const calculator = new Calculator();
 
+			if (localStorage['sheet']){
+				let sheet = localStorage['sheet'] ;
+				textarea.val(sheet);
+			}
+
 			textarea.bind('keydown keyup change', function(){
+
+        		localStorage.setItem('sheet', $(this).val()) ;
+
 				window.exportVars = {
 					'pi' : Math.PI,
 					'π' : Math.PI,
@@ -36,20 +44,13 @@
 		});
 	</script>
 	<style>
-		html {
-			box-sizing: border-box;
-			background: #f3f3f3;
-			background: url(background.jpg) center no-repeat;
-			background-size: cover;
-			height: 100%;
+		body{
+			overflow: hidden;
 		}
 		.body{
-			width: 600px;
-			height: 400px;
-			margin: 0 auto;
-			margin-top: 80px;
-			border-radius: 5px;
-			box-shadow: 0 7px 35px #00000085;
+			position: absolute;
+			width: 100%;
+			height: 100%;
 		}
 	</style>
 </head>

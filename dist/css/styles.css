@@ -2,13 +2,10 @@
 	margin:0;
 	padding:0;
 }
-html {
+*, *:before, *:after {
 	box-sizing: border-box;
-	background: #f3f3f3;
-	background: url(../background.jpg) center no-repeat;
-	background-size: cover;
-	height: 100%;
 }
+
 :root{
 	--line-height: 25px;
 	/*--background: #232429;*/
@@ -17,24 +14,15 @@ html {
 	--primary:#f1c40f;
 }
 .body{
-	width: 600px;
-	height: 400px;
 	background: var(--background);
-	margin: 0 auto;
-	margin-top: 80px;
-	border-radius: 5px;
 	position: relative;
 	padding:30px 20px;
-	box-shadow: 0 7px 35px #00000085;
 }
 .container{
 	display: flex;
 	position: relative;
 	overflow: auto;
 	height:100%;
-}
-*, *:before, *:after {
-	box-sizing: inherit;
 }
 html, body, textarea{
 	color:white;
